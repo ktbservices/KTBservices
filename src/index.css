@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* KTB brand — Navy & Cyan */
+    --background: 0 0% 100%;
+    --foreground: 210 100% 20%;          /* Navy #003366 */
+    --card: 0 0% 100%;
+    --card-foreground: 210 100% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 100% 20%;
+    --primary: 210 100% 20%;            /* Navy */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 198 60% 95%;           /* Light cyan tint */
+    --secondary-foreground: 210 100% 20%;
+    --muted: 210 30% 96%;
+    --muted-foreground: 210 30% 38%;
+    --accent: 198 100% 47%;             /* Cyan #00b4f0 */
+    --accent-foreground: 210 100% 20%;
+    --destructive: 0 72% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 25% 88%;
+    --input: 210 25% 88%;
+    --ring: 198 100% 47%;
+    --chart-1: 198 100% 47%;
+    --chart-2: 210 100% 20%;
+    --chart-3: 210 30% 50%;
+    --chart-4: 198 60% 70%;
+    --chart-5: 0 72% 45%;
+    --radius: 0.25rem;
+    --font-heading: 'Cormorant Garamond', 'Amiri', ui-serif, Georgia, serif;
+    --font-body: 'Inter', 'Cairo', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Cormorant Garamond', 'Amiri', ui-serif, Georgia, serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    line-height: 1.6;
+    font-size: 1.125rem;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-heading;
+    line-height: 1.1;
+  }
+
+  ::selection {
+    background-color: hsl(var(--accent) / 0.3);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  .ktb-focus:focus-visible {
+    outline: 3px solid hsl(var(--accent));
+    outline-offset: 2px;
+  }
+
+  .letterpress {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .letterpress.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .shimmer-text {
+    background: linear-gradient(90deg, hsl(var(--muted-foreground)) 0%, hsl(var(--accent)) 50%, hsl(var(--muted-foreground)) 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 2.4s ease-in-out infinite;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
